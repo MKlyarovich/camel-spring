@@ -35,5 +35,6 @@ dependencies {
 
     runtime "org.postgresql:postgresql"
 
-    testCompile "junit:junit:$junitVersion"
+    testCompile "org.apache.camel:camel-test:$camelVersion",
+            "junit:junit:$junitVersion"
 }
