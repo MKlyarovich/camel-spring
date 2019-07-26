@@ -7,24 +7,19 @@ import org.springframework.stereotype.Component;
 import ru.company.app.model.Document;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class DocumentBuilder {
 
     public List<Document> getAllDocuments(List<Map<String, String>> dataList) {
-        List<Document> documentList = new ArrayList<>();
-
-        for (Map<String, String> data : dataList) {
-            Document document = new Document();
-            document.setId(getId(data.get("id")));
-            document.setNumber(data.get("number"));
-            document.setDate(getDate(data.get("date")));
-
-            documentList.add(document);
-        }
-
-        return documentList;
+        return dataList.stream()
+                .map(data -> new Document(getId(data.get("id")), data.get("number"), getDate(data.get("date"))))
+                .collect(Collectors.toList());
     }
 
     public Document getDocument(Map<String, String> data) {
