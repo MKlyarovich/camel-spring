@@ -29,6 +29,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web",
             "org.apache.camel:camel-spring-boot-starter:$camelVersion",
             "org.apache.camel:camel-servlet-starter:$camelVersion",
+            "org.apache.camel:camel-bean-validator:$camelVersion",
             "org.apache.camel:camel-jackson:$camelVersion",
             "org.apache.camel:camel-sql:$camelVersion",
             "org.projectlombok:lombok:$lombokVersion"
