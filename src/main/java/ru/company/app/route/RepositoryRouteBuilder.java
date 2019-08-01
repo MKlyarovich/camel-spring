@@ -28,6 +28,12 @@ public class RepositoryRouteBuilder extends RouteBuilder {
                 .marshal()
                 .json(JsonLibrary.Jackson, Document.class);
 
+        from("direct:getDocumentByIdRepository")
+                .to("sql-stored:get_document(INTEGER ${headers.id})")
+                .bean(documentBuilder, "getDocument")
+                .marshal()
+                .json(JsonLibrary.Jackson, Document.class);
+
         from("direct:addDocumentRepository")
                 .bean(documentBuilder, "addDocument")
                 .to("sqlComponent:{{sql.addDocument}}")

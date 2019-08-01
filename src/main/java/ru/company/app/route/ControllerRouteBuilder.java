@@ -31,6 +31,7 @@ public class ControllerRouteBuilder extends RouteBuilder {
 
         rest("/camel")
                 .get().to("direct:getAllDocumentsController")
+                .get("/{id}").to("direct:getDocumentByIdController")
                 .post().to("direct:documentService")
                 .post("/db").to("direct:addDocumentController");
 
@@ -40,6 +41,10 @@ public class ControllerRouteBuilder extends RouteBuilder {
 
         from("direct:getAllDocumentsController")
                 .setHeader("type", constant("getAll"))
+                .to("direct:documentService");
+
+        from("direct:getDocumentByIdController")
+                .setHeader("type", constant("getById"))
                 .to("direct:documentService");
 
         from("direct:addDocumentController")

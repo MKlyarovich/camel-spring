@@ -12,6 +12,8 @@ public class ServiceRouteBuilder extends RouteBuilder {
                 .choice()
                     .when(header("type").isEqualTo("getAll"))
                         .to("direct:getAllDocumentsRepository")
+                    .when(header("type").isEqualTo("getById"))
+                        .to("direct:getDocumentByIdRepository")
                     .when(header("type").isEqualTo("saveToDb"))
                         .to("direct:addDocumentRepository")
                     .otherwise()
